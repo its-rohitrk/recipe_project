@@ -1,0 +1,34 @@
+{%extends "base.html"%}
+{%block start%}
+<body>
+
+<div class="container">
+
+<h3>Name : {{name}}</h3>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Marks</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for details in marks1 %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+
+      <td><b>{{ details.subject }}</b></td>
+      <td>{{ details.marks }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<h4>Rank: </h4>
+  <h4>Total: {{ total }}</h4>
+</div>
+</body>
+
+</html>
+{%endblock%}

@@ -1,0 +1,101 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Document</title>-->
+<!--   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+<!--   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.0/bootstrap-table.min.css">-->
+<!--   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">-->
+{%extends "base.html"%}
+{%block start%}
+
+
+    <style>
+        body {
+  margin: 2rem;
+}
+
+.paginate_button {
+  border-radius: 0 !important;
+}
+    </style>
+</head>
+<body>
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+                <th scope="col">student_id</th>
+              <th scope="col">department</th>
+
+              <th scope="col">student_name</th>
+              <th scope="col">student_email</th>
+              <th scope="col">student_age</th>
+            </tr>
+        </thead>
+
+        <tfoot>
+            <tr>
+              <th scope="col">#</th>
+                <th scope="col">student_id</th>
+              <th scope="col">department</th>
+
+              <th scope="col">student_name</th>
+              <th scope="col">student_email</th>
+              <th scope="col">student_age</th>
+            </tr>
+        </tfoot>
+
+        <tbody>
+
+        {%for stud in queryset %}
+      <tr>
+       <td></td>
+        <td><a href="{% url 'see_marks' stud.student_id %}">{{stud.student_id}}</a>
+            </td>
+        <td>{{stud.department}}</td>
+
+        <td>{{stud.student_name}}</td>
+        <td>{{stud.student_email}}</td>
+        <td>{{stud.student_age}}</td>
+
+      </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+
+
+
+
+
+<script>
+    $(document).ready(function() {
+
+
+
+  var table = $('#example').DataTable({
+        select: false,
+        "columnDefs": [{
+            className: "Name",
+            "targets":[0],
+             "data": null,
+            "visible": true,
+            "searchable":false,
+             "render": function (data, type, row, meta) {
+                  return meta.row + 1; // Add 1 to start the index from 1
+                }
+        }]
+    });//End of create main table
+
+
+
+});
+</script>
+</body>
+{% endblock %}
+<!--</html>-->

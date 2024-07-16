@@ -1,0 +1,102 @@
+{%extends "base.html"%}
+<!-- Add these CSS and JS links in the head of your HTML document -->
+
+
+{%block start%}
+<style>
+  .search-container {
+  width: 490px;
+  display: block;
+  margin: 0 auto; }
+
+input#search-bar {
+  margin: 0 auto;
+  width: 100%;
+  height: 45px;
+  padding: 0 20px;
+  font-size: 1rem;
+  border: 1px solid #D0CFCE;
+  outline: none; }
+  input#search-bar:focus {
+    border: 1px solid #008ABF;
+    transition: 0.35s ease;
+    color: #008ABF; }
+    input#search-bar:focus::-webkit-input-placeholder {
+      transition: opacity 0.45s ease;
+      opacity: 0; }
+    input#search-bar:focus::-moz-placeholder {
+      transition: opacity 0.45s ease;
+      opacity: 0; }
+    input#search-bar:focus:-ms-placeholder {
+      transition: opacity 0.45s ease;
+      opacity: 0; }
+
+.search-icon {
+  position: relative;
+  float: right;
+  width: 75px;
+  height: 75px;
+  top: -62px;
+  right: -422px;
+  }
+
+</style>
+
+<div class="container mt-5 mb-5" >
+   <form class="search-container">
+    <input type="text" name="search" id="search-bar" placeholder="What can I help you with today?">
+   <a  type="button"><img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"></a>
+       <button class="btn btn-primary mt-2">Search</button>
+  </form>
+
+<table class="table table-bordered table-striped" id="studentTable">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">department</th>
+      <th scope="col">student_id</th>
+      <th scope="col">student_name</th>
+      <th scope="col">student_email</th>
+      <th scope="col">student_age</th>
+    </tr>
+  </thead>
+  <tbody>
+  {%for stud in queryset %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{stud.student_id}}</td>
+      <td>{{stud.department}}</td>
+      <td>{{stud.student_name}}</td>
+      <td>{{stud.student_email}}</td>
+      <td>{{stud.student_age}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<!--<nav aria-label="Page navigation example">-->
+<!--  <ul class="pagination justify-content-center">-->
+<!--    {% if queryset.has_previous %}-->
+<!--      <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>-->
+<!--      <li class="page-item"><a class="page-link" href="?page={{ queryset.previous_page_number }}">previous</a></li>-->
+<!--    {% endif %}-->
+
+<!--    {% for n in total_page %}-->
+<!--      <li class="page-item"><a class="page-link" href="?page={{n}}">{{n}}</a></li>-->
+<!--    {% endfor %}-->
+
+<!--    {% if queryset.has_next %}-->
+<!--      <li class="page-item"><a class="page-link" href="?page={{ queryset.next_page_number }}">next</a></li>-->
+<!--      <li class="page-item"><a class="page-link" href="?page={{ queryset.paginator.num_pages }}">last &raquo;</a></li>-->
+<!--    {% endif %}-->
+<!--  </ul>-->
+<!--</nav>-->
+
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      var studentTable = $('#studentTable').DataTable();
+    });
+</script>
+
+{% endblock %}
